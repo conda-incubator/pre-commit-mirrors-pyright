@@ -2,4 +2,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - pyright=1.1.317
+  - pyright=1.1.318
