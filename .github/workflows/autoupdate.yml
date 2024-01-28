@@ -1,4 +1,5 @@
 name: Autoupdate
+
 on:
  workflow_dispatch:
  schedule:
@@ -16,8 +17,6 @@ jobs:
     steps:
       - name: Checkout branch
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
       - name: Set up Conda env
         uses: mamba-org/setup-micromamba@e820223f89c8720d6c740ca154a7adf32fcd278a
         with:
@@ -32,8 +31,8 @@ jobs:
           new_version=$(micromamba list -n check-env "$pkgname" --json | jq -r '.[0].version')
           if [[ "$new_version" != "$old_version" ]]; then
             sed -i "s/$old_version/$new_version/g" environment.yml
-            echo "pkgname=$pkgname" >> "$GITHUB_OUTPUT"
-            echo "new-version=$new_version" >> "$GITHUB_OUTPUT"
+            echo "pkgname=$pkgname" >> $GITHUB_OUTPUT
+            echo "new-version=$new_version" >> $GITHUB_OUTPUT
           fi
       - uses: peter-evans/create-pull-request@153407881ec5c347639a548ade7d8ad1d6740e38
         if: steps.versions.outputs.pkgname
@@ -42,7 +41,7 @@ jobs:
           title: "Update ${{ steps.versions.outputs.pkgname }} to ${{ steps.versions.outputs.new-version }}"
           body: |
             A new release of ${{ steps.versions.outputs.pkgname }} was detected on conda-forge.
-            
+
             This PR updates ${{ steps.versions.outputs.pkgname }} to version ${{ steps.versions.outputs.new-version }} and will push a tag on merge automatically.
           branch: v${{ steps.versions.outputs.new-version }}
           delete-branch: true
