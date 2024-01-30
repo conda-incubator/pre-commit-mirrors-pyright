@@ -4,7 +4,7 @@ Mirror of pyright for pre-commit with conda as a language.
 
 For pre-commit: see [here](https://github.com/pre-commit/pre-commit)
 
-For ansible-lint: see [here](https://github.com/microsoft/pyright)
+For pyright: see [here](https://github.com/microsoft/pyright)
 
 ## Using pyright with pre-commit and conda:
 
