@@ -1,6 +1,10 @@
 - id: pyright-conda
   name: pyright-conda
+<<<<<<< before updating
   description: Python command line wrapper for pyright, a static type checker
+=======
+  description: 'This hook runs pyright.'
+>>>>>>> after updating
   entry: pyright
   language: conda
   types: [python]
