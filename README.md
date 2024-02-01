@@ -1,6 +1,6 @@
-# pyright mirror
+# pyright pre-commit hook
 
-Mirror of pyright for pre-commit with conda as a language.
+pre-commit hook of pyright with conda as a `language` / package manager.
 
 For pre-commit: see [here](https://github.com/pre-commit/pre-commit)
 
